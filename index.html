@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Attendance Tracking</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1 style="text-size-adjust: 100000px;">Attendance Tracking <span> <img src="./attendance.jpg" alt="attendance img" width="150" height="150"> </span>  </h1>
+		<form>
+			<label for="attendance">Enter attendance:</label>
+			<input type="text" id="attendance" name="attendance" placeholder="  ">
+			<input type="submit" value="Submit" onclick="markAttendance()">
+		</form>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Attendance</th>
+			</tr>
+			<tr>
+				<td>std1</td>
+				<td id="std1-attendance">-</td>
+			</tr>
+			<tr>
+				<td>std2</td>
+				<td id="std2-attendance">-</td>
+			</tr>
+			<tr>
+				<td>std3</td>
+				<td id="std3-attendance">-</td>
+			</tr>
+			<tr>
+				<td>std4</td>
+				<td id="std4-attendance">-</td>
+			</tr>
+		</table>
+	</div>
+	<script src="script.js"></script>
+</body>
+<style>
+body {
+    background-color: #b1ccee;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #999;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+<script src="script.js"></script>
+    <script>
+function markAttendance() {
+    const attendanceInput = document.getElementById("attendance").value;
+    const attendanceArr = attendanceInput.split(",").map((str) => str.trim());
+  
+    // Check if the number of entries matches the number of students
+    if (attendanceArr.length !==4) {
+      alert("Invalid attendance! Please enter attendance for all students.");
+      return;
+    }
+  
+    // Check if the values are valid (either "Present" or "Absent")
+    if (
+      !attendanceArr.every(
+        (value) => value === "p" || value === "ab" || value === "late"
+      )
+    ) {
+      alert("Invalid attendance! Please enter attendance for all students.");
+      return;
+    }
+  
+    // Update attendance in the table
+    document.getElementById("std1-attendance").textContent = attendanceArr[0];
+    document.getElementById("std2-attendance").textContent = attendanceArr[1];
+    document.getElementById("std3-attendance").textContent = attendanceArr[2];
+    document.getElementById("std4-attendance").textContent = attendanceArr[3];
+</script>
+</html>
